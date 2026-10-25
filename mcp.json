@@ -1,0 +1,51 @@
+{
+  "mcpServers": {
+    "daniel-fahrenheit-ai": {
+      "command": "cargo",
+      "args": [
+        "run",
+        "--release",
+        "--quiet"
+      ],
+      "env": {
+        "RUST_LOG": "info",
+        "TITAN_PROTOCOL": "FAHRENHEIT",
+        "TARGET_CHAIN": "Sui",
+        "FIPS_203_LEVEL": "ML-KEM-768",
+        "FIPS_204_LEVEL": "ML-DSA-65"
+      },
+      "tools": [
+        {
+          "name": "calibrate_mercury_thermometer_scale",
+          "description": "Computes linear expansion of mercury column between ice-salt eutectic 0\u00b0F and 212\u00b0F boiling point",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "column_height_mm": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "column_height_mm"
+            ]
+          }
+        },
+        {
+          "name": "correct_boiling_point_for_barometric_pressure",
+          "description": "Calculates shift in water boiling temperature as function of barometric height",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "pressure_inhg": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "pressure_inhg"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
